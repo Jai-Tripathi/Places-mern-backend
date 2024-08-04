@@ -3,12 +3,20 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const placesRoutes = require('./routes/places-routes');
 const userRoutes = require('./routes/users-routes');
 const HttpError = require('./models/http-error');
 
 const app = express();
+
+app.use(cors({
+    origin: 'http://localhost:3000', // Allow requests from your frontend
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Allow cookies to be sent with requests
+    optionsSuccessStatus: 204
+}));
 
 app.use(bodyParser.json());
 
