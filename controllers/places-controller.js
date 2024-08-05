@@ -60,6 +60,7 @@ const createPlace = async (req, res, next) => {
     } catch (err) {
         return next(err);
     };
+    console.log('After getting coordinates');
 
     const createdPlace = new Place({
         title,
