@@ -44,6 +44,7 @@ const getPlacesByUserId = async (req, res, next) => {
 };
 
 const createPlace = async (req, res, next) => {
+    console.log('In createPlace');
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -54,6 +55,7 @@ const createPlace = async (req, res, next) => {
 
     let coordinates;
     try {
+        console.log('Before getting coordinates');
         coordinates = await getCoordsForAddress(address);
     } catch (err) {
         return next(err);
@@ -68,9 +70,12 @@ const createPlace = async (req, res, next) => {
         creator: req.userData.userId
     });
 
+    console.log('After createdPlace is created');
+
     let user;
 
     try {
+        console.log('Before finding user');
         user = await User.findById(req.userData.userId);
     } catch (err) {
         return next(new HttpError('Could not find the user for provided id.', 500));
