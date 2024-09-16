@@ -121,4 +121,4 @@ const login = async (req, res, next) => {
 
 exports.getUsers = getUsers;
 exports.signup = signup;
-exports.login = login;
+exports.login = login; 
